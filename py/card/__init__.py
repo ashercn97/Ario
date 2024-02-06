@@ -1,1 +1,1 @@
-from card.card import *
+from .card import *

@@ -1,3 +1,3 @@
-from button.button import *
-from button.defaults import *
-from button.styles import *
+from .button import *
+from .defaults import *
+from .styles import *

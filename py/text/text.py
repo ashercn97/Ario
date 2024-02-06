@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Literal, List, ClassVar
-from utils.core import Import, write_to_file, DictExt
-from text.styles import TextStyles
+from ..utils.core import Import, write_to_file, DictExt
+from .styles import TextStyles
 
 class Text(BaseModel):
     content: str

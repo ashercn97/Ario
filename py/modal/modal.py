@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Union, Any
-from utils import write_to_file
-from text import TextStyles
+from ..utils import write_to_file
+from ..text import TextStyles
 
 class Modal(BaseModel):
     id: str  # Unique identifier for the modal

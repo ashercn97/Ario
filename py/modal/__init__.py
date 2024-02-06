@@ -1,1 +1,1 @@
-from modal.modal import *
+from .modal import *

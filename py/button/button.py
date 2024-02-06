@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from utils.core import write_to_file
-from button.styles import ButtonStyles
+from ..utils.core import write_to_file
+from .styles import ButtonStyles
 
 class Button(BaseModel):
     text: str

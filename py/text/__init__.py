@@ -1,2 +1,2 @@
-from text.text import *
-from text.styles import *
+from .text import *
+from .styles import *

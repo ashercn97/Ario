@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 from typing import List, Dict, Union, Literal
-from utils.core import write_to_file
-from text.text import Text
-from button.button import Button
+from ..utils.core import write_to_file
+from ..text.text import Text
+from ..button.button import Button
 
 class Grid(BaseModel):
     rows: int

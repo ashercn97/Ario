@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional, Union, Any
-from utils import write_to_file
-from text.styles import TextStyles
+from ..utils import write_to_file
+from ..text.styles import TextStyles
 
 class CardAction(BaseModel):
     label: str
