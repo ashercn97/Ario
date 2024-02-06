@@ -20,5 +20,7 @@ If you have any questions, PLEASE ask.
 - Add more styling options
 - add a ton more components
 - add an event handling system
+- migrate to tailwind
+- use Alpine for reactivity and better functionality (WIP)
 
 
