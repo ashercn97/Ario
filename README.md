@@ -14,3 +14,11 @@ The get_html method should do the following:
 there is a write_to_file method defined in utils that handles the complex stuff, so really you just need to get the code from get_html and then use the write_to_file method.
 
 If you have any questions, PLEASE ask.
+
+## Plans/Future
+- Move to react (not sure if this is even worth it, might make it harder to use..
+- Add more styling options
+- add a ton more components
+- add an event handling system
+
+
