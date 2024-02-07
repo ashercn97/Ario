@@ -66,10 +66,9 @@ class Card(BaseModel):
         """
 
         return f"""
-{styles}
-<div class="card" style="{style_extra}">
-    <div class="card-container">
-        <h4 class="card-title" style="{title_style}">{self.title}</h4>
+<div class="card rounded-xl border bg-card text-card-foreground shadow" style="{style_extra}">
+    <div class="card-container flex flex-col space-y-1.5 p-6">
+        <h4 class="card-title font-semibold leading-none tracking-tight " style="{title_style}">{self.title}</h4>
         <p>{content_html}</p>
         <div>{actions_html}</div>
     </div>

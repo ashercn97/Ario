@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-from typing import List, Literal, Optional
+from typing import List, Literal, Optional, Dict
+from ..tailwind import Tailwind
 
 class ButtonStyles(BaseModel):
     size: Literal["Small", "Medium", "Large"] = "Medium"
@@ -48,3 +49,55 @@ class ButtonStyles(BaseModel):
             styles += f"font-size: {self.fontSize}px; "
 
         return " ".join(styles.split())  # Clean up whitespace for a tidier output
+
+
+# Better for non-dynamic things...
+class ButtonStylesTW(Tailwind):
+    rounded: Literal["Sm", "Md", "Lg", "Xl"] = "Md"
+    buttonColor: Dict[Literal["Gray", "Red", "Green", "Blue"], Literal[100, 300, 500, 900]] | str = {"Gray": 500}
+    font: Literal["Sans", "Serif"] = "Sans"
+    size: Literal["Sm", "Md", "Lg", "Xl"] = "Md"
+    fontColor: Literal["Offwhite", "Offblack"] = "Offblack"
+    #shape: Literal["Rectangle", "Square"] = "Rectangle"
+
+    def get(self):
+        roundedMapping = {
+            "Sm": "rounded-sm",
+            "Md": "rounded",
+            "Lg": "rounded-lg",
+            "Xl": "rounded-xl"
+        }
+        buttonColorNameMapping = {
+            "Gray": "bg-gray-{number}",
+            "Red": "bg-rose-{number}",
+            "Green": "bg-green-{number}",
+            "Blue": "bg-blue-{number}"
+        }
+
+        fontMapping = {
+            "Sans": "font-sans",
+            "Serif": "font-serif"
+        }
+
+        sizeMapping = {
+            "Sm": "w-24 h-10",
+            "Md": "w-36 h-16",
+            "Lg": "w-48 h-28",
+            "Xl": "w-60 h-32"
+        }
+
+        fontColor = "text-gray-200" if self.fontColor == "Offwhite" else "text-gray-900"
+        tailwind = [fontColor]
+
+        tailwind.append(roundedMapping.get(self.rounded, ""))
+        tailwind.append(buttonColorNameMapping.get(list(self.buttonColor.keys())[0]).format(number=list(self.buttonColor.values())[0]))
+        tailwind.append(fontMapping.get(self.font))
+        tailwind.append(sizeMapping.get(self.size))
+
+        output = " ".join(word for word in tailwind)
+        self.tailwind_styles = output 
+        print(self.combine())
+
+        return self.combine()
+
+

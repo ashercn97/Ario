@@ -28,6 +28,6 @@ class Grid(BaseModel):
 
         return f'<div style="{grid_style}">{grid_items_html}</div>'
 
-    def write_to_file(self, method="a"):
+    def write_to_file(self, method="w"):
         grid_html = self.render()
         write_to_file(grid_html, self.filepath, method)

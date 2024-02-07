@@ -11,6 +11,8 @@ def write_to_file(content, filepath, method='a'):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Page</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 {content}
@@ -40,38 +42,3 @@ def write_to_file(content, filepath, method='a'):
         with open(filepath, 'w') as file:
             file.write(full_content)
 
-
-
-class DictExt:
-
-    # i is a dictionaryu of a name of a function/interface/anything and a
-    # value for what that functions definition is
-    #
-    # call is a template of something like:
-    # """const {var}: UserInterface = {{"content": "{val}"}}"""
-    def __init__(self, i, call):
-        self.items = i
-        self.name = list(i.keys())  # Convert dict_keys to a list
-        self.value = list(i.values())  # Convert dict_values to a list
-        self.call = call
-
-    def create_call(self, **inputs):
-        return self.call.format(**inputs)
-
-
-
-class Import(BaseModel):
-    items: Dict[str, DictExt]  # Corrected type
-
-    class Config:
-        arbitrary_types_allowed = True
-
-    def create_def(self):
-        # Assuming each DictExt instance has a method to return its definition as a string
-        output = "".join(v.items[next(iter(v.items.keys()))] for k, v in self.items.items())
-        return output
-
-    def create_call(self, name: str, **kwargs):
-        dict_ext_instance = self.items[name]
-        output = dict_ext_instance.create_call(**kwargs)
-        return output
